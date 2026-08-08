@@ -1,0 +1,118 @@
+source code -> is what programmers write
+machine code -> is what the computer understands (only 0 and 1)
+
+img1 | img2 -> compiler: a piece of software that someone else wrote that convert some Language to another
+
+vs code
+
+Grafic User Interface -> GUI
+Command-Line Interface -> CLI
+
+terminal:
+ code file.c -> create file.c and open it
+ make file -> compile the file
+ ./file -> run the file
+
+function in code its like function in math
+ f(x) the function f takes some input for instance x and produces some output
+img4
+
+escape sequence -> special sequence of symbols
+ \n -> moves you to a new line
+ \r -> carriage return, refers to the process of bringing the typing head back to the left end
+ \" -> recall that phrase we tried to print "hello, world"
+ \' -> the same \"
+ \\ -> to print like \
+ …
+
+header files -> .h
+containt code that other people wrote that you can use in your own programs
+ stdio.h -> give us the access to a library
+ printf is a feature of the header file
+
+stdio.h define the printf funcion
+
+cs50.h:
+ get_char
+ get_double
+ get_float
+ get_int
+ get_long
+ get_string -> string answer = get_string(" ");
+
+to print variables -> printf("Hello, %s\n", answer);
+
+Linux
+ the operating system in the world are the pieces of software that really do the most fundamental operation on a device. (bootting it up / shutting it down)
+Linux is a very popular operation system in the programming world and in the world of servers in the cloud and on the internet.
+- its a descendent of unix
+- its very highly performance
+- it can have a grafical UI -> it can operate more quickly because it doesnt need the grafics for humans
+- usually used ad a command line interface (cli)
+
+ ls -> list he files in my current folder (list)
+ mkdir -> create a new folder (make directory)
+ rmdir -> remuve directory
+ rm -> remuve file
+ mv -> move a file -> mv hello.c hello (first file than directory), mv hello.c old.c (change name)
+ cp -> copy -> cp hello.c backup.c (create a new file copyed)
+ cd -> change directory
+
+conditional 
+img4 -> img5
+
+operations
+=
+<
+<=
+>
+>=
+==
+!=
+…
+
+types
+bool
+char
+double -> 64 bits
+float -> 32 bits
+int -> 32 bits
+long -> 64 bits
+string
+
+format codes
+%c -> char
+%f -> float
+%i -> int
+%li -> long
+%s -> string
+
+variables
+int counter = 0;
+counter = counter + 1; -> counter += 1; -> counter++;
+
+loops
+ while img6
+ for img7
+
+control-c to stop loops on terminal
+
+create own function -> solve a problem once and then reuse it
+img8 
+void -> return value of the function 
+void -> the arguments to the function 
+
+if you put functions in the bottom there will be an error so we put a prototype ahead of the main -> a bit of a hint to the compiler 
+
+void meow(void);
+
+int main(void){
+
+}
+
+void meow(void){
+
+}
+
+constants a value that should never change
+const int n = 3;
