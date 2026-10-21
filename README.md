@@ -187,21 +187,6 @@ file picker, and the absence of horizontal overflow at phone width.
 - Possible next steps: a fifth tool, a separate about page and saving the
   settings of each tool in `localStorage`.
 
-## Demo video plan
-
-The video must be at most 3 minutes long and must open with the project
-title, my name, my GitHub and edX usernames, my city and country, and the
-date of the recording. My plan for the three minutes:
-
-| Time | What I show |
-|---|---|
-| 0:00 – 0:20 | Opening slide (title, name, usernames, place, date) and the idea: small tools, everything in the browser. |
-| 0:20 – 0:40 | The structure in 20 seconds: `app.py` and the `TOOLS` catalog, the templates, the four JavaScript files. |
-| 0:40 – 1:30 | **Text Toolkit**: live statistics, uppercase, remove extra spaces, copy. |
-| 1:30 – 2:10 | **JSON Formatter**: format a valid payload, then a broken one with the highlighted line. |
-| 2:10 – 2:40 | **QR Code Generator**: type a link, generate the code, download the PNG. |
-| 2:40 – 3:00 | **Image Resizer**: load a picture, resize it, download it. Closing: the four tools and the privacy idea. |
-
 ## Use of artificial intelligence
 
 For the final project CS50x allows the use of AI assistants, as long as the
