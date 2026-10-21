@@ -1,6 +1,6 @@
 # OmniTools
 
-#### Video Demo: **not recorded yet** — add the YouTube URL here before submitting
+#### Video Demo: https://youtu.be/0qo8cTlRELQ
 
 #### Description:
 OmniTools is a small collection of free web utilities that run entirely in the
