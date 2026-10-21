@@ -1,0 +1,33 @@
+{#
+  Catalogo degli strumenti: stessa fonte di dati della home (TOOLS in app.py).
+
+  Nota CS50x: questo template e' stato generato con l'aiuto di un assistente
+  AI (OpenCode / Claude).
+#}
+{% extends "base.html" %}
+{% from "macros.html" import tool_card %}
+
+{% block title %}Tools — OmniTools{% endblock %}
+{% block description %}The complete list of OmniTools tools: text toolkit, JSON formatter, QR code generator and image resizer.{% endblock %}
+
+{% block content %}
+<section class="ot-section ot-section-first">
+  <div class="container">
+    <div class="ot-section-head">
+      <h1 class="ot-section-title">Tools</h1>
+      <p class="ot-section-sub">
+        Everything runs locally in your browser: no uploads, no accounts, no
+        tracking.
+      </p>
+    </div>
+
+    <div class="row g-4">
+      {% for tool in tools %}
+      <div class="col-sm-6 col-lg-3">
+        {{ tool_card(tool) }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

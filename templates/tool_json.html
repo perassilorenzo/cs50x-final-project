@@ -1,0 +1,75 @@
+{#
+  JSON Formatter: validazione, formattazione e minificazione di un payload
+  JSON, con messaggi d'errore comprensibili.
+
+  Nota CS50x: questo template e' stato generato con l'aiuto di un assistente
+  AI (OpenCode / Claude).
+#}
+{% extends "base.html" %}
+{% from "macros.html" import icon, tool_breadcrumb, tool_sidebar %}
+
+{% block title %}{{ tool.name }} — OmniTools{% endblock %}
+{% block description %}{{ tool.description }}{% endblock %}
+
+{% block content %}
+<section class="ot-section ot-section-first">
+  <div class="container">
+    {{ tool_breadcrumb(tool) }}
+
+    <div class="row g-4 gx-lg-5">
+      <div class="col-lg-8">
+        <h1 class="ot-section-title">{{ tool.name }}</h1>
+        <p class="ot-section-sub">{{ tool.description }}</p>
+
+        <div class="ot-workbench">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label" for="json-input">Input</label>
+              <textarea class="form-control font-monospace" id="json-input" rows="12" spellcheck="false"
+                        placeholder='{"name":"omnitools","tags":["simple","free"]}'></textarea>
+            </div>
+            <div class="col-md-6">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <label class="form-label mb-0" for="json-output">Output</label>
+                <label class="visually-hidden" for="json-indent">Indentation</label>
+                <select class="form-select form-select-sm" id="json-indent">
+                  <option value="2" selected>2 spaces</option>
+                  <option value="4">4 spaces</option>
+                  <option value="tab">Tab</option>
+                </select>
+              </div>
+              <textarea class="form-control font-monospace" id="json-output" rows="12" readonly
+                        spellcheck="false" placeholder="The formatted JSON will appear here."></textarea>
+            </div>
+          </div>
+
+          <div class="ot-actions">
+            <button type="button" class="btn btn-primary btn-sm" data-action="format">Format</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" data-action="minify">Minify</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" data-action="validate">Validate</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" data-action="copy">
+              {{ icon('copy', 16) }}<span>Copy output</span>
+            </button>
+            <button type="button" class="btn btn-link btn-sm ot-btn-quiet" data-action="clear">Clear</button>
+          </div>
+
+          <div class="alert alert-danger ot-alert d-none" id="json-error" role="alert">
+            <p class="ot-alert-title mb-1">{{ icon('alert', 16) }}<span>Invalid JSON</span></p>
+            <p class="mb-0 ot-alert-message" id="json-error-message"></p>
+          </div>
+
+          <p class="ot-status" id="json-status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        {{ tool_sidebar(tool) }}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/json-tool.js') }}"></script>
+{% endblock %}

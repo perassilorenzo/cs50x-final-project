@@ -1,0 +1,11 @@
+# Dipendenze per lo sviluppo: servono solo per eseguire i test.
+#
+#   pip install -r requirements-dev.txt
+#
+# Per usare il sito non serve nient'altro: basta requirements.txt.
+
+-r requirements.txt
+pytest==9.1.1
+
+# Nota CS50x: questo file e' stato generato con l'aiuto di un assistente AI
+# (OpenCode / Claude).

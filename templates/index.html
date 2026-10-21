@@ -1,0 +1,187 @@
+{#
+  Homepage: hero, sezione About, sezione Tools e sezione conclusiva.
+  Le card degli strumenti arrivano dal catalogo TOOLS definito in app.py,
+  quindi la home e la pagina /tools non possono mai andare out of sync.
+
+  Nota CS50x: questo template e' stato generato con l'aiuto di un assistente
+  AI (OpenCode / Claude).
+#}
+{% extends "base.html" %}
+{% from "macros.html" import icon, tool_card, social_icon %}
+
+{% block title %}OmniTools — Small tools. Simple solutions.{% endblock %}
+
+{% block content %}
+
+{# --------------------------------- HERO --------------------------------- #}
+<section class="ot-hero">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-7">
+        <p class="ot-eyebrow">Personal project &middot; CS50x 2026</p>
+        <h1 class="ot-hero-title">Small tools. Simple solutions.</h1>
+        <p class="ot-lead">
+          OmniTools is a collection of simple, free tools designed to make
+          everyday digital tasks a little easier.
+        </p>
+        <div class="d-flex flex-wrap gap-2 mt-4">
+          <a class="btn btn-primary" href="{{ url_for('tools_page') }}">Explore tools</a>
+          <a class="btn btn-outline-primary" href="#about">About this project</a>
+        </div>
+      </div>
+
+      {# Anteprima reale degli strumenti: niente illustrazioni decorative. #}
+      <div class="col-lg-5">
+        <div class="ot-panel">
+          <p class="ot-panel-title">In this collection</p>
+          <ul class="ot-preview list-unstyled mb-0">
+            {% for tool in tools %}
+            <li>
+              <a class="ot-preview-item" href="{{ url_for('tool_page', tool_id=tool.id) }}">
+                <span class="ot-preview-icon">{{ icon(tool.icon, 18) }}</span>
+                <span class="ot-preview-text">
+                  <span class="ot-preview-name">{{ tool.name }}</span>
+                  <span class="ot-preview-desc">{{ tool.tagline }}</span>
+                </span>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# -------------------------------- ABOUT -------------------------------- #}
+<section id="about" class="ot-section">
+  <div class="container">
+    <div class="row gy-4 gx-lg-5">
+      <div class="col-lg-7">
+        <h2 class="ot-section-title">About this project</h2>
+        <p class="ot-prose">
+          Hi, I'm Lorenzo, an Italian high school student studying computer
+          science. I'm learning to write software, and I like small projects
+          where I can follow the whole thing from start to finish.
+        </p>
+        <p class="ot-prose">
+          I created OmniTools to put what I'm learning into practice. I wanted
+          something small and complete that I could actually use, instead of
+          a collection of isolated exercises.
+        </p>
+        <p class="ot-prose">
+          The idea is simple: a handful of practical tools in one place, with
+          a clear interface and no unnecessary complexity. Each tool does one
+          job and runs in your browser, so nothing you type or upload is sent
+          to a server.
+        </p>
+        <p class="ot-prose">
+          This project is also my final project for CS50x, part of my current
+          path into computer science.
+        </p>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="ot-panel ot-panel-flat">
+          <p class="ot-panel-title">Project facts</p>
+          <dl class="ot-facts">
+            <dt>Type</dt>
+            <dd>CS50x 2026 final project</dd>
+            <dt>Stack</dt>
+            <dd>Flask + Jinja, Bootstrap 5, vanilla JavaScript</dd>
+            <dt>Data</dt>
+            <dd>None stored &mdash; every tool runs in your browser</dd>
+            <dt>Tools</dt>
+            <dd>{{ tools | length }} available</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# -------------------------------- TOOLS -------------------------------- #}
+<section id="tools" class="ot-section ot-section-alt">
+  <div class="container">
+    <div class="ot-section-head">
+      <h2 class="ot-section-title">The tools</h2>
+      <p class="ot-section-sub">
+        {{ tools | length }} small utilities, one job each. Open one, use it, close the tab.
+      </p>
+    </div>
+    <div class="row g-4">
+      {% for tool in tools %}
+      <div class="col-sm-6 col-xl-3">
+        {{ tool_card(tool) }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ------------------------------ CONCLUSIONE ----------------------------- #}
+<section class="ot-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <h2 class="ot-section-title">What's next</h2>
+        <p class="ot-prose">
+          OmniTools is a personal project and I plan to grow it slowly: a few
+          more tools, small fixes and a cleaner interface. Everything stays
+          local to the browser and the code stays small enough to read in one
+          sitting.
+        </p>
+        <p class="ot-prose mb-0">
+          If you have an idea for a tool, I'll be happy to hear about it.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---------------------------- PROFILI SOCIAL ----------------------------- #}
+<section id="find-me" class="ot-section ot-section-alt">
+  <div class="container">
+    <h2 class="ot-section-title">Find me online</h2>
+    <ul class="ot-social">
+      <li>
+        <a class="ot-social-link" href="https://github.com/perassilorenzo" target="_blank" rel="noopener noreferrer">
+          <span class="ot-social-icon">{{ social_icon('github', 18) }}</span>
+          <span>GitHub</span>
+        </a>
+      </li>
+      <li>
+        <a class="ot-social-link" href="https://www.instagram.com/diario_di_uno_09/" target="_blank" rel="noopener noreferrer">
+          <span class="ot-social-icon">{{ social_icon('instagram', 18) }}</span>
+          <span>Instagram</span>
+        </a>
+      </li>
+      <li>
+        <a class="ot-social-link" href="https://www.tiktok.com/@diario_di_uno_09" target="_blank" rel="noopener noreferrer">
+          <span class="ot-social-icon">{{ social_icon('tiktok', 18) }}</span>
+          <span>TikTok</span>
+        </a>
+      </li>
+      <li>
+        <a class="ot-social-link" href="https://www.youtube.com/@diario_di_uno_09" target="_blank" rel="noopener noreferrer">
+          <span class="ot-social-icon">{{ social_icon('youtube', 18) }}</span>
+          <span>YouTube</span>
+        </a>
+      </li>
+      <li>
+        <a class="ot-social-link" href="https://perassilorenzo.github.io/portfolio" target="_blank" rel="noopener noreferrer">
+          <span class="ot-social-icon">{{ social_icon('portfolio', 18) }}</span>
+          <span>Portfolio</span>
+        </a>
+      </li>
+      <li>
+        <a class="ot-social-link" href="https://www.linkedin.com/in/perassilorenzo/" target="_blank" rel="noopener noreferrer">
+          <span class="ot-social-icon">{{ social_icon('linkedin', 18) }}</span>
+          <span>LinkedIn</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+{% endblock %}

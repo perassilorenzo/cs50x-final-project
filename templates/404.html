@@ -1,0 +1,26 @@
+{#
+  Pagina 404: mantiene lo stesso aspetto del resto del sito.
+
+  Nota CS50x: questo template e' stato generato con l'aiuto di un assistente
+  AI (OpenCode / Claude).
+#}
+{% extends "base.html" %}
+
+{% block title %}Page not found — OmniTools{% endblock %}
+
+{% block content %}
+<section class="ot-section ot-section-first">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <h1 class="ot-section-title">Page not found</h1>
+        <p class="ot-prose">
+          The page you were looking for doesn't exist. It may have been moved,
+          or the link might have a typo.
+        </p>
+        <a class="btn btn-primary" href="{{ url_for('tools_page') }}">Browse the tools</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

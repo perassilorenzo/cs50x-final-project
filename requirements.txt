@@ -1,0 +1,6 @@
+# Dipendenze per l'esecuzione del sito: solo Flask.
+#
+# Nota CS50x: questo file e' stato generato con l'aiuto di un assistente AI
+# (OpenCode / Claude).
+
+Flask==3.1.3

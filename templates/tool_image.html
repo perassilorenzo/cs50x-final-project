@@ -1,0 +1,96 @@
+{#
+  Image Resizer: ridimensiona un'immagine nel browser con l'API Canvas e
+  permette di scaricare il risultato. L'immagine non viene mai caricata su
+  un server.
+
+  Nota CS50x: questo template e' stato generato con l'aiuto di un assistente
+  AI (OpenCode / Claude).
+#}
+{% extends "base.html" %}
+{% from "macros.html" import icon, tool_breadcrumb, tool_sidebar %}
+
+{% block title %}{{ tool.name }} — OmniTools{% endblock %}
+{% block description %}{{ tool.description }}{% endblock %}
+
+{% block content %}
+<section class="ot-section ot-section-first">
+  <div class="container">
+    {{ tool_breadcrumb(tool) }}
+
+    <div class="row g-4 gx-lg-5">
+      <div class="col-lg-8">
+        <h1 class="ot-section-title">{{ tool.name }}</h1>
+        <p class="ot-section-sub">{{ tool.description }}</p>
+
+        <div class="ot-workbench">
+          {# Il campo file e' nascosto perche' la label ne fa da pulsante.
+             Per questo l'input sta PRIMA della label: cosi' si puo' mostrare
+             il focus della tastiera sulla label stessa (regola CSS
+             ".ot-file-input:focus-visible + .ot-file-label"). #}
+          <div class="ot-file-picker">
+            <input class="visually-hidden ot-file-input" type="file" id="image-file" accept="image/*">
+            <label class="ot-file-label" for="image-file">
+              {{ icon('upload', 18) }}
+              <span class="ot-file-title" id="image-file-name">Choose an image</span>
+              <span class="ot-file-hint">PNG, JPEG, WebP or GIF &mdash; nothing is uploaded</span>
+            </label>
+          </div>
+
+          <p class="ot-file-meta" id="image-meta">No image selected.</p>
+
+          <div class="row g-3 align-items-end">
+            <div class="col-sm-4">
+              <label class="form-label" for="image-width">Width (px)</label>
+              <input type="number" class="form-control" id="image-width" min="1" max="4000" step="1"
+                     placeholder="Auto">
+            </div>
+            <div class="col-sm-4">
+              <label class="form-label" for="image-height">Height (px)</label>
+              <input type="number" class="form-control" id="image-height" min="1" max="4000" step="1"
+                     placeholder="Auto">
+            </div>
+            <div class="col-sm-4">
+              <div class="form-check mt-4">
+                <input class="form-check-input" type="checkbox" id="image-lock" checked>
+                <label class="form-check-label" for="image-lock">Keep aspect ratio</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="ot-canvas-preview">
+            <canvas id="image-canvas" class="d-none"></canvas>
+            <p class="ot-canvas-empty" id="image-empty">The preview will appear here.</p>
+          </div>
+
+          <div class="ot-actions">
+            <button type="button" class="btn btn-primary btn-sm" data-action="apply" id="image-apply" disabled>
+              {{ icon('check', 16) }}<span>Apply size</span>
+            </button>
+            <button type="button" class="btn btn-outline-primary btn-sm" data-action="download" id="image-download" disabled>
+              {{ icon('download', 16) }}<span>Download</span>
+            </button>
+            <button type="button" class="btn btn-link btn-sm ot-btn-quiet" data-action="reset" id="image-reset" disabled>
+              Clear
+            </button>
+          </div>
+
+          <div class="alert alert-danger ot-alert d-none" id="image-error" role="alert">
+            <p class="ot-alert-title mb-1">{{ icon('alert', 16) }}<span>Something went wrong</span></p>
+            <p class="mb-0 ot-alert-message" id="image-error-message"></p>
+          </div>
+
+          <p class="ot-status" id="image-status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        {{ tool_sidebar(tool) }}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/image-resizer.js') }}"></script>
+{% endblock %}

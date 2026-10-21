@@ -1,0 +1,63 @@
+{#
+  Text Toolkit: conteggio caratteri/parole, conversione di case, pulizia
+  degli spazi e copia del risultato. Tutto in JavaScript sul lato client.
+
+  Nota CS50x: questo template e' stato generato con l'aiuto di un assistente
+  AI (OpenCode / Claude).
+#}
+{% extends "base.html" %}
+{% from "macros.html" import icon, tool_breadcrumb, tool_sidebar %}
+
+{% block title %}{{ tool.name }} — OmniTools{% endblock %}
+{% block description %}{{ tool.description }}{% endblock %}
+
+{% block content %}
+<section class="ot-section ot-section-first">
+  <div class="container">
+    {{ tool_breadcrumb(tool) }}
+
+    <div class="row g-4 gx-lg-5">
+      <div class="col-lg-8">
+        <h1 class="ot-section-title">{{ tool.name }}</h1>
+        <p class="ot-section-sub">{{ tool.description }}</p>
+
+        <div class="ot-workbench">
+          <label class="form-label" for="text-input">Your text</label>
+          <textarea class="form-control" id="text-input" rows="9" spellcheck="false"
+                    placeholder="Paste or write some text here..."></textarea>
+
+          <div class="ot-stats">
+            <div class="ot-stat"><span class="ot-stat-value" id="stat-chars">0</span><span class="ot-stat-label">Characters</span></div>
+            <div class="ot-stat"><span class="ot-stat-value" id="stat-chars-nospace">0</span><span class="ot-stat-label">No spaces</span></div>
+            <div class="ot-stat"><span class="ot-stat-value" id="stat-words">0</span><span class="ot-stat-label">Words</span></div>
+            <div class="ot-stat"><span class="ot-stat-value" id="stat-sentences">0</span><span class="ot-stat-label">Sentences</span></div>
+            <div class="ot-stat"><span class="ot-stat-value" id="stat-lines">0</span><span class="ot-stat-label">Lines</span></div>
+          </div>
+
+          <div class="ot-actions">
+            <button type="button" class="btn btn-outline-primary btn-sm" data-action="uppercase">UPPERCASE</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" data-action="lowercase">lowercase</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" data-action="capitalize">Capitalize</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" data-action="trim">Trim spaces</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" data-action="join">Join lines</button>
+            <button type="button" class="btn btn-primary btn-sm" data-action="copy">
+              {{ icon('copy', 16) }}<span>Copy</span>
+            </button>
+            <button type="button" class="btn btn-link btn-sm ot-btn-quiet" data-action="clear">Clear</button>
+          </div>
+
+          <p class="ot-status" id="text-status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        {{ tool_sidebar(tool) }}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/text-tool.js') }}"></script>
+{% endblock %}

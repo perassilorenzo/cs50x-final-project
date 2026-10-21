@@ -1,0 +1,85 @@
+{#
+  QR Code Generator: genera un codice QR da un testo o da un URL, con
+  download in PNG e copia dell'immagine negli appunti.
+
+  Nota CS50x: questo template e' stato generato con l'aiuto di un assistente
+  AI (OpenCode / Claude).
+#}
+{% extends "base.html" %}
+{% from "macros.html" import icon, tool_breadcrumb, tool_sidebar %}
+
+{% block title %}{{ tool.name }} — OmniTools{% endblock %}
+{% block description %}{{ tool.description }}{% endblock %}
+
+{% block content %}
+<section class="ot-section ot-section-first">
+  <div class="container">
+    {{ tool_breadcrumb(tool) }}
+
+    <div class="row g-4 gx-lg-5">
+      <div class="col-lg-8">
+        <h1 class="ot-section-title">{{ tool.name }}</h1>
+        <p class="ot-section-sub">{{ tool.description }}</p>
+
+        <div class="ot-workbench">
+          <label class="form-label" for="qr-input">Text or URL</label>
+          <input type="text" class="form-control" id="qr-input" spellcheck="false"
+                 placeholder="https://example.com">
+
+          <div class="row g-3 mt-1">
+            <div class="col-sm-6 col-lg-4">
+              <label class="form-label" for="qr-size">Size</label>
+              <select class="form-select" id="qr-size">
+                <option value="200">200 x 200 px</option>
+                <option value="256" selected>256 x 256 px</option>
+                <option value="320">320 x 320 px</option>
+                <option value="512">512 x 512 px</option>
+              </select>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <label class="form-label" for="qr-level">Error correction</label>
+              <select class="form-select" id="qr-level">
+                <option value="L">L — 7% recovery</option>
+                <option value="M" selected>M — 15% recovery</option>
+                <option value="Q">Q — 25% recovery</option>
+                <option value="H">H — 30% recovery</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="ot-qr-preview">
+            <div class="ot-qr-canvas" id="qr-output"></div>
+            <p class="ot-qr-hint" id="qr-hint">Type something to generate a QR code.</p>
+          </div>
+
+          <div class="ot-actions">
+            <button type="button" class="btn btn-primary btn-sm" data-action="download">
+              {{ icon('download', 16) }}<span>Download PNG</span>
+            </button>
+            <button type="button" class="btn btn-outline-primary btn-sm" data-action="copy">
+              {{ icon('copy', 16) }}<span>Copy image</span>
+            </button>
+          </div>
+
+          <div class="alert alert-danger ot-alert d-none" id="qr-error" role="alert">
+            <p class="ot-alert-title mb-1">{{ icon('alert', 16) }}<span>Cannot generate the QR code</span></p>
+            <p class="mb-0 ot-alert-message" id="qr-error-message"></p>
+          </div>
+
+          <p class="ot-status" id="qr-status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        {{ tool_sidebar(tool) }}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+{# qrcode.js: libreria MIT di davidshimjs, inclusa in locale in static/vendor. #}
+<script src="{{ url_for('static', filename='vendor/qrcode.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/qr-tool.js') }}"></script>
+{% endblock %}
