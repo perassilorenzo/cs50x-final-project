@@ -20,12 +20,11 @@ app = Flask(__name__)
 
 # Unico posto dove impostare l'indirizzo del repository GitHub.
 #
-# Finche' il repository non esiste, il valore resta None e il footer non
-# mostra nessun link: e' preferibile non avere un collegamento a una pagina
-# che non esiste ancora. Quando il repository sara' pubblico, basta scrivere
-# qui l'indirizzo e il link compare da solo in tutte le pagine.
-GITHUB_URL = None
-# Esempio: GITHUB_URL = "https://github.com/perassilorenzo/omnitools"
+# Il valore None lascia il footer senza link: e' preferibile non avere un
+# collegamento a una pagina che non esiste ancora. Quando il repository sara'
+# pubblico, basta scrivere qui l'indirizzo e il link compare da solo in tutte
+# le pagine.
+GITHUB_URL = "https://github.com/perassilorenzo/cs50x-final-project"
 
 # ---------------------------------------------------------------------------
 # Catalogo degli strumenti.
